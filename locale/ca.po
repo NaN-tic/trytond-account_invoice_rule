@@ -1,0 +1,103 @@
+#
+msgid ""
+msgstr "Content-Type: text/plain; charset=utf-8\n"
+
+msgctxt "field:account.invoice,ruleset:"
+msgid "Account Rules"
+msgstr "Reglas cuentas factura"
+
+msgctxt "field:account.invoice.account.rule,company:"
+msgid "Company"
+msgstr "Empresa"
+
+msgctxt "field:account.invoice.account.rule,create_date:"
+msgid "Create Date"
+msgstr "Fecha de creación"
+
+msgctxt "field:account.invoice.account.rule,create_uid:"
+msgid "Create User"
+msgstr "Usuario de creación"
+
+msgctxt "field:account.invoice.account.rule,id:"
+msgid "ID"
+msgstr "Identificador"
+
+msgctxt "field:account.invoice.account.rule,lines:"
+msgid "Lines"
+msgstr "Líneas"
+
+msgctxt "field:account.invoice.account.rule,name:"
+msgid "Name"
+msgstr "Nombre registro"
+
+msgctxt "field:account.invoice.account.rule,rec_name:"
+msgid "Record Name"
+msgstr "Nombre registro"
+
+msgctxt "field:account.invoice.account.rule,write_date:"
+msgid "Write Date"
+msgstr "Fecha modificación"
+
+msgctxt "field:account.invoice.account.rule,write_uid:"
+msgid "Write User"
+msgstr "Usuario modificación"
+
+msgctxt "field:account.invoice.account.rule.line,company:"
+msgid "Company"
+msgstr "Empresa"
+
+msgctxt "field:account.invoice.account.rule.line,create_date:"
+msgid "Create Date"
+msgstr "Fecha de creación"
+
+msgctxt "field:account.invoice.account.rule.line,create_uid:"
+msgid "Create User"
+msgstr "Usuario de creación"
+
+msgctxt "field:account.invoice.account.rule.line,id:"
+msgid "ID"
+msgstr "Identificador"
+
+msgctxt "field:account.invoice.account.rule.line,origin_account:"
+msgid "Origin Account"
+msgstr "Cuenta"
+
+msgctxt "field:account.invoice.account.rule.line,rec_name:"
+msgid "Record Name"
+msgstr "Nombre registro"
+
+msgctxt "field:account.invoice.account.rule.line,rule:"
+msgid "Rule"
+msgstr "Regla"
+
+msgctxt "field:account.invoice.account.rule.line,target_account:"
+msgid "Target Account"
+msgstr "Cuenta destino"
+
+msgctxt "field:account.invoice.account.rule.line,write_date:"
+msgid "Write Date"
+msgstr "Fecha modificación"
+
+msgctxt "field:account.invoice.account.rule.line,write_uid:"
+msgid "Write User"
+msgstr "Usuario modificación"
+
+msgctxt "model:account.invoice.account.rule,name:"
+msgid "\" Account Invoice Account Rule"
+msgstr "Reglas cuentas factura"
+
+msgctxt "model:account.invoice.account.rule.line,name:"
+msgid "\" Account Invoice Account Rule Line"
+msgstr "Reglas cuentas factura"
+
+msgctxt "model:ir.action,name:act_invoice_account_rule_form"
+msgid "Invoice Account Rules"
+msgstr "Reglas cuentas factura"
+
+msgctxt "model:ir.rule.group,name:rule_group_invoice_account_rule"
+msgid "Invoice Account Rule"
+msgstr "Reglas cuentas factura"
+
+msgctxt "model:ir.ui.menu,name:menu_invoice_account_rule_form"
+msgid "Invoice Account Rules"
+msgstr "Reglas cuentas factura"
