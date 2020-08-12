@@ -9,4 +9,6 @@ def register():
         invoice.AccountInvoiceLine,
         invoice.AccountInvoiceAccountRule,
         invoice.AccountInvoiceAccountRuleLine,
+        invoice.Party,
+        invoice.PartyAccount,
         module='account_invoice_rule', type_='model')

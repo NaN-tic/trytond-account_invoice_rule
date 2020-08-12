@@ -2,45 +2,41 @@
 msgid ""
 msgstr "Content-Type: text/plain; charset=utf-8\n"
 
-msgctxt "field:account.invoice,ruleset:"
-msgid "Account Rules"
-msgstr "Regla compte factura"
-
 msgctxt "field:account.invoice.account.rule,company:"
 msgid "Company"
 msgstr "Empresa"
 
 msgctxt "field:account.invoice.account.rule,create_date:"
 msgid "Create Date"
-msgstr "Data creació"
+msgstr "Fecha de creación"
 
 msgctxt "field:account.invoice.account.rule,create_uid:"
 msgid "Create User"
-msgstr "Usuari creació"
+msgstr "Usuario de creación"
 
 msgctxt "field:account.invoice.account.rule,id:"
 msgid "ID"
-msgstr "Identificador"
+msgstr "ID"
 
 msgctxt "field:account.invoice.account.rule,lines:"
 msgid "Lines"
-msgstr "Línia"
+msgstr "Líneas"
 
 msgctxt "field:account.invoice.account.rule,name:"
 msgid "Name"
-msgstr "Nom"
+msgstr "Nombre"
 
 msgctxt "field:account.invoice.account.rule,rec_name:"
 msgid "Record Name"
-msgstr "Nom"
+msgstr "Nombre del registro"
 
 msgctxt "field:account.invoice.account.rule,write_date:"
 msgid "Write Date"
-msgstr "Data modificació"
+msgstr "Fecha de modificación"
 
 msgctxt "field:account.invoice.account.rule,write_uid:"
 msgid "Write User"
-msgstr "Usuari modificació"
+msgstr "Usuario de modificación"
 
 msgctxt "field:account.invoice.account.rule.line,company:"
 msgid "Company"
@@ -48,23 +44,23 @@ msgstr "Empresa"
 
 msgctxt "field:account.invoice.account.rule.line,create_date:"
 msgid "Create Date"
-msgstr "Data de creació"
+msgstr "Fecha de creación"
 
 msgctxt "field:account.invoice.account.rule.line,create_uid:"
 msgid "Create User"
-msgstr "Usuari de creació"
+msgstr "Usuario de creación"
 
 msgctxt "field:account.invoice.account.rule.line,id:"
 msgid "ID"
-msgstr "Identificador"
+msgstr "ID"
 
 msgctxt "field:account.invoice.account.rule.line,origin_account:"
 msgid "Origin Account"
-msgstr "Compte"
+msgstr "Cuenta origen"
 
 msgctxt "field:account.invoice.account.rule.line,rec_name:"
 msgid "Record Name"
-msgstr "Nom registre"
+msgstr "Nombre del registro"
 
 msgctxt "field:account.invoice.account.rule.line,rule:"
 msgid "Rule"
@@ -72,48 +68,48 @@ msgstr "Regla"
 
 msgctxt "field:account.invoice.account.rule.line,target_account:"
 msgid "Target Account"
-msgstr "Compte desti"
+msgstr "Cuenta destino"
 
 msgctxt "field:account.invoice.account.rule.line,write_date:"
 msgid "Write Date"
-msgstr "Data modificació"
+msgstr "Fecha de modificación"
 
 msgctxt "field:account.invoice.account.rule.line,write_uid:"
 msgid "Write User"
-msgstr "Usuari modificació"
+msgstr "Usuario de modificación"
 
 msgctxt "field:party.party,customer_invoice_account_rule:"
 msgid "Customer Account Invoice Rule"
-msgstr "Regla compte factura client"
+msgstr "Regla de cuentas factura cliente"
 
 msgctxt "field:party.party,supplier_invoice_account_rule:"
 msgid "Supplier Account Invoice Rule"
-msgstr "Regla compte factura proveïdor"
+msgstr "Regla de cuentas factura proveedor"
 
 msgctxt "field:party.party.account,customer_invoice_account_rule:"
 msgid "Customer Invoice Account Rule"
-msgstr "Regla compte factura client"
+msgstr "Regla de cuentas factura cliente"
 
 msgctxt "field:party.party.account,supplier_invoice_account_rule:"
 msgid "Supplier Invoice Account Rule"
-msgstr "Regla compte factura proveïdor"
+msgstr "Reglas de cuentas factura proveedor"
 
 msgctxt "model:account.invoice.account.rule,name:"
 msgid "Account Invoice Account Rule"
-msgstr "Regla compte factura"
+msgstr "Regla de cuentas factura"
 
 msgctxt "model:account.invoice.account.rule.line,name:"
 msgid "Account Invoice Account Rule Line"
-msgstr "Regla compte factura"
+msgstr "Línea de reglas de cuentas factura"
 
 msgctxt "model:ir.action,name:act_invoice_account_rule_form"
 msgid "Invoice Account Rules"
-msgstr "Regla compte factura"
+msgstr "Regla de cuentas factura"
 
 msgctxt "model:ir.rule.group,name:rule_group_invoice_account_rule"
 msgid "Invoice Account Rule"
-msgstr "Regla compte factura"
+msgstr "Reglas de cuentas factura"
 
 msgctxt "model:ir.ui.menu,name:menu_invoice_account_rule_form"
 msgid "Invoice Account Rules"
-msgstr "Regla compte factura"
+msgstr "Reglas de cuentas factura"

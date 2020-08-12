@@ -42,9 +42,14 @@ this repository contains the full copyright notices and license terms. -->
             <field name="name">invoice_account_rule_line_tree</field>
         </record>
 
-        <menuitem parent="account.menu_account_configuration" action="act_invoice_account_rule_form"
-            id="menu_invoice_account_rule_form" sequence="3"/>
+        <record model="ir.ui.view" id="party_view_form">
+            <field name="model">party.party</field>
+            <field name="inherit" ref="party.party_view_form"/>
+            <field name="name">party_form</field>
+        </record>
 
+        <menuitem parent="account.menu_account_tree" action="act_invoice_account_rule_form"
+            id="menu_invoice_account_rule_form" sequence="3"/>
 
         <record model="ir.rule.group" id="rule_group_invoice_account_rule">
             <field name="name">Invoice Account Rule</field>
@@ -57,6 +62,39 @@ this repository contains the full copyright notices and license terms. -->
                 eval="[('company', '=', Eval('user', {}).get('company', None))]"
                 pyson="1"/>
             <field name="rule_group" ref="rule_group_invoice_account_rule"/>
+        </record>
+
+        <record model="ir.model.access" id="access_account_invoice_rule_group">
+            <field name="model" search="[('model', '=', 'account.invoice.account.rule')]"/>
+            <field name="perm_read" eval="False"/>
+            <field name="perm_write" eval="False"/>
+            <field name="perm_create" eval="False"/>
+            <field name="perm_delete" eval="False"/>
+        </record>
+        <record model="ir.model.access" id="access_account_invoice_account_rule">
+            <field name="model" search="[('model', '=', 'account.invoice.account.rule')]"/>
+            <field name="group" ref="account.group_account"/>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_write" eval="True"/>
+            <field name="perm_create" eval="True"/>
+            <field name="perm_delete" eval="True"/>
+        </record>
+
+        <record model="ir.model.access" id="access_account_invoice_rule_line_group">
+            <field name="model" search="[('model', '=', 'account.invoice.account.rule.line')]"/>
+            <field name="perm_read" eval="False"/>
+            <field name="perm_write" eval="False"/>
+            <field name="perm_create" eval="False"/>
+            <field name="perm_delete" eval="False"/>
+        </record>
+
+        <record model="ir.model.access" id="access_account_invoice_account_rule_line">
+            <field name="model" search="[('model', '=', 'account.invoice.account.rule.line')]"/>
+            <field name="group" ref="account.group_account"/>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_write" eval="True"/>
+            <field name="perm_create" eval="True"/>
+            <field name="perm_delete" eval="True"/>
         </record>
 
     </data>

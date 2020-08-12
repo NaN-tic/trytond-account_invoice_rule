@@ -1,57 +1,68 @@
-from trytond.model import MatchMixin, ModelSQL, ModelView, Workflow, fields
+from trytond.model import MatchMixin, ModelSQL, ModelView, fields
 from trytond.pool import Pool, PoolMeta
-from trytond.transaction import  Transaction
-
+from trytond.transaction import Transaction
+from trytond.pyson import Eval
 
 
 class AccountInvoiceAccountRule(ModelSQL, ModelView):
-    """" Account Invoice Account Rule """
+    """Account Invoice Account Rule"""
     __name__ = 'account.invoice.account.rule'
 
-    name = fields.Char('Name')
-    company = fields.Many2One('company.company', 'Company')
+    name = fields.Char('Name', required=True)
+    company = fields.Many2One('company.company', 'Company', required=True)
     lines = fields.One2Many('account.invoice.account.rule.line', 'rule', 'Lines')
 
     @staticmethod
     def default_company():
         return Transaction().context.get('company') or None
 
+    def compute(self, pattern):
+        for line in self.lines:
+            if line.match(pattern):
+                return line.target_account
+
+        return pattern.get('origin_account')
+
+
 class AccountInvoiceAccountRuleLine(ModelSQL, ModelView, MatchMixin):
-    """" Account Invoice Account Rule Line"""
+    """Account Invoice Account Rule Line"""
     __name__ = 'account.invoice.account.rule.line'
 
-    rule = fields.Many2One('account.invoice.account.rule', 'Rule')
+    rule = fields.Many2One('account.invoice.account.rule', 'Rule', required=True, ondelete='CASCADE')
     origin_account = fields.Many2One('account.account', 'Origin Account',
-        domain=[('type', '!=', 'view')])
+        domain=[('type', '!=', 'view')], required=True)
     target_account = fields.Many2One('account.account', 'Target Account',
-      domain=[('type', '!=', 'view')])
-    company = fields.Many2One('company.company', 'Company')
+      domain=[('type', '!=', 'view')], required=True)
+    company = fields.Function(fields.Many2One('company.company', 'Company', ),
+        'on_change_with_rule')
 
     def match(self, pattern):
         if 'origin_account' in pattern and pattern['origin_account'] == self.origin_account:
-            return self.target_account
+            return True
+        return False
 
-    @staticmethod
-    def default_company():
-        return Transaction().context.get('company') or None
+    @fields.depends('rule', '_parent_rule.company')
+    def on_change_with_rule(self, name=None):
+        if self.rule and self.rule.company:
+            return self.rule.company.id
+
 
 class AccountInvoice(metaclass=PoolMeta):
     __name__ = 'account.invoice'
-
-    ruleset = fields.Many2One('account.invoice.account.rule', 'Account Rules')
-
 
     @classmethod
     def post(cls, invoices):
         Line = Pool().get('account.invoice.line')
         to_save = []
         for invoice in invoices:
+            rule = invoice.party.customer_invoice_account_rule
+            if invoice.type == 'in':
+                rule = invoice.supplier_invoice_account_rule
+            if not rule:
+                continue
             for line in invoice.lines:
-                rule = line._get_account_matching_rule()
-                if not rule:
-                    continue
-                line.account = rule.target_account
-                line.on_change_account()
+                pattern = line._get_account_rule_pattern()
+                line.account = rule.compute(pattern)
                 to_save.append(line)
         Line.save(to_save)
         super().post(invoices)
@@ -68,16 +79,50 @@ class AccountInvoiceLine(metaclass=PoolMeta):
         pattern['origin_account'] = self.account
         return pattern
 
-    def _get_account_matching_rule(self, pattern=None):
-        RuleSet = Pool().get('account.invoice.account.rule')
-        rulesets = RuleSet.search([])
-        if not rulesets:
-            return
 
-        ruleset = rulesets[0]
-        pattern = self._get_account_rule_pattern()
-        for rule in ruleset.lines:
-            if rule.match(pattern):
-                return rule
+class Party(metaclass=PoolMeta):
+    __name__ = 'party.party'
+
+    customer_invoice_account_rule = fields.MultiValue(fields.Many2One(
+            'account.invoice.account.rule', "Customer Account Invoice Rule",
+            domain=[
+                ('company', '=', Eval('context', {}).get('company', -1)),
+                ],
+            states={
+                'invisible': ~Eval('context', {}).get('company'),
+                }))
+
+    supplier_invoice_account_rule = fields.MultiValue(fields.Many2One(
+            'account.invoice.account.rule', "Supplier Account Invoice Rule",
+            domain=[
+                ('company', '=', Eval('context', {}).get('company', -1)),
+                ],
+            states={
+                'invisible': ~Eval('context', {}).get('company'),
+                }))
+
+    @classmethod
+    def multivalue_model(cls, field):
+        pool = Pool()
+        if field in {'customer_invoice_account_rule', 'supplier_invoice_account_rule'}:
+            return pool.get('party.party.account')
+        return super(Party, cls).multivalue_model(field)
 
 
+class PartyAccount(metaclass=PoolMeta):
+    """Party Account"""
+    __name__ = 'party.party.account'
+
+    customer_invoice_account_rule = fields.Many2One(
+        'account.invoice.account.rule', "Customer Invoice Account Rule",
+        domain=[
+            ('company', '=', Eval('company', -1)),
+            ],
+        depends=['company'])
+
+    supplier_invoice_account_rule = fields.Many2One(
+        'account.invoice.account.rule', "Supplier Invoice Account Rule",
+        domain=[
+            ('company', '=', Eval('company', -1)),
+        ],
+        depends=['company'])

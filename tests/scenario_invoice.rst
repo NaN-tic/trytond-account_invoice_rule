@@ -51,15 +51,6 @@ Create chart of accounts::
 Create new Account::
     >>> revenue2, = revenue.duplicate()
 
-Create Account Invoice Tax Rule::
-
-    >>> Ruleset = Model.get('account.invoice.account.rule')
-    >>> rule = Ruleset()
-    >>> rule.name = 'Test'
-    >>> line = rule.lines.new()
-    >>> line.origin_account = revenue
-    >>> line.target_account = revenue2
-    >>> rule.save()
 
 Create tax::
 
@@ -102,10 +93,21 @@ Create Write Off method::
     >>> writeoff_method.debit_account = expense
     >>> writeoff_method.save()
 
+Create Account Invoice Tax Rule::
+
+    >>> Ruleset = Model.get('account.invoice.account.rule')
+    >>> rule = Ruleset()
+    >>> rule.name = 'Test'
+    >>> line = rule.lines.new()
+    >>> line.origin_account = revenue
+    >>> line.target_account = revenue2
+    >>> rule.save()
+
 Create party::
 
     >>> Party = Model.get('party.party')
     >>> party = Party(name='Party')
+    >>> party.customer_invoice_account_rule = rule
     >>> party.save()
 
 Create account category::
