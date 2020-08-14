@@ -3,14 +3,14 @@ from trytond.pool import Pool, PoolMeta
 from trytond.transaction import Transaction
 from trytond.pyson import Eval
 
-
 class AccountInvoiceAccountRule(ModelSQL, ModelView):
     """Account Invoice Account Rule"""
     __name__ = 'account.invoice.account.rule'
 
     name = fields.Char('Name', required=True)
     company = fields.Many2One('company.company', 'Company', required=True)
-    lines = fields.One2Many('account.invoice.account.rule.line', 'rule', 'Lines')
+    lines = fields.One2Many('account.invoice.account.rule.line', 'rule', 'Lines',
+        domain=[('company', '=', Eval('company'))], depends=['company'])
 
     @staticmethod
     def default_company():
@@ -30,21 +30,26 @@ class AccountInvoiceAccountRuleLine(ModelSQL, ModelView, MatchMixin):
 
     rule = fields.Many2One('account.invoice.account.rule', 'Rule', required=True, ondelete='CASCADE')
     origin_account = fields.Many2One('account.account', 'Origin Account',
-        domain=[('type', '!=', 'view')], required=True)
+        domain=[('type', '!=', 'view'), ('company', '=', Eval('_parent_rule', {}).get('company', -1)),], required=True)
     target_account = fields.Many2One('account.account', 'Target Account',
-      domain=[('type', '!=', 'view')], required=True)
-    company = fields.Function(fields.Many2One('company.company', 'Company', ),
-        'on_change_with_rule')
+      domain=[('type', '!=', 'view'), ('company', '=', Eval('_parent_rule', {}).get('company', -1)),], required=True)
+    company = fields.Function(fields.Many2One('company.company', 'Company'),
+        'on_change_with_company', searcher='search_company')
 
     def match(self, pattern):
         if 'origin_account' in pattern and pattern['origin_account'] == self.origin_account:
             return True
         return False
 
-    @fields.depends('rule', '_parent_rule.company')
-    def on_change_with_rule(self, name=None):
-        if self.rule and self.rule.company:
+    @fields.depends('rule')
+    def on_change_with_company(self, name="None"):
+        if self.rule:
             return self.rule.company.id
+        return Transaction().context.get('company') or None
+
+    @classmethod
+    def search_company(cls, name, clause):
+        return [('rule.%s' % name,) + tuple(clause[1:])]
 
 
 class AccountInvoice(metaclass=PoolMeta):
@@ -84,22 +89,13 @@ class Party(metaclass=PoolMeta):
     __name__ = 'party.party'
 
     customer_invoice_account_rule = fields.MultiValue(fields.Many2One(
-            'account.invoice.account.rule', "Customer Account Invoice Rule",
-            domain=[
-                ('company', '=', Eval('context', {}).get('company', -1)),
-                ],
-            states={
-                'invisible': ~Eval('context', {}).get('company'),
-                }))
-
+            'account.invoice.account.rule', "Customer Invoice Account Rule",
+            domain=[('company', '=', Eval('context', {}).get('company', -1)),],
+            ))
     supplier_invoice_account_rule = fields.MultiValue(fields.Many2One(
-            'account.invoice.account.rule', "Supplier Account Invoice Rule",
-            domain=[
-                ('company', '=', Eval('context', {}).get('company', -1)),
-                ],
-            states={
-                'invisible': ~Eval('context', {}).get('company'),
-                }))
+            'account.invoice.account.rule', "Supplier Invoice Account Rule",
+            domain=[('company', '=', Eval('context', {}).get('company', -1)),]))
+
 
     @classmethod
     def multivalue_model(cls, field):
@@ -114,15 +110,9 @@ class PartyAccount(metaclass=PoolMeta):
     __name__ = 'party.party.account'
 
     customer_invoice_account_rule = fields.Many2One(
-        'account.invoice.account.rule', "Customer Invoice Account Rule",
-        domain=[
-            ('company', '=', Eval('company', -1)),
-            ],
-        depends=['company'])
-
+            'account.invoice.account.rule', "Customer Invoice Account Rule",
+            domain=[('company', '=', Eval('company', -1)),], depends=['company'])
     supplier_invoice_account_rule = fields.Many2One(
-        'account.invoice.account.rule', "Supplier Invoice Account Rule",
-        domain=[
-            ('company', '=', Eval('company', -1)),
-        ],
-        depends=['company'])
+            'account.invoice.account.rule', "Supplier Invoice Account Rule",
+            domain=[('company', '=', Eval('company', -1)),
+            ], depends=['company'])

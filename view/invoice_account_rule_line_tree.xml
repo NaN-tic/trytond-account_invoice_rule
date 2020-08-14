@@ -4,5 +4,4 @@ this repository contains the full copyright notices and license terms. -->
 <tree>
     <field name="origin_account"/>
     <field name="target_account"/>
-    <field name="company"/>
 </tree>

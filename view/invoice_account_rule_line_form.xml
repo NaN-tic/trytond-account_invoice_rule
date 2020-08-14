@@ -6,6 +6,4 @@ this repository contains the full copyright notices and license terms. -->
     <field name="origin_account"/>
     <label name="target_account"/>
     <field name="target_account"/>
-    <label name="company"/>
-    <field name="company"/>
 </form>

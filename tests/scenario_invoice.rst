@@ -98,6 +98,7 @@ Create Account Invoice Tax Rule::
     >>> Ruleset = Model.get('account.invoice.account.rule')
     >>> rule = Ruleset()
     >>> rule.name = 'Test'
+    >>> rule.company = company
     >>> line = rule.lines.new()
     >>> line.origin_account = revenue
     >>> line.target_account = revenue2
