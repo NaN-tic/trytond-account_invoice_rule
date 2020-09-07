@@ -62,7 +62,7 @@ class AccountInvoice(metaclass=PoolMeta):
         for invoice in invoices:
             rule = invoice.party.customer_invoice_account_rule
             if invoice.type == 'in':
-                rule = invoice.supplier_invoice_account_rule
+                rule = invoice.party.supplier_invoice_account_rule
             if not rule:
                 continue
             for line in invoice.lines:
