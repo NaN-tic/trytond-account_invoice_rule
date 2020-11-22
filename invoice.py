@@ -41,8 +41,8 @@ class AccountInvoiceAccountRuleLine(ModelSQL, ModelView, MatchMixin):
             return True
         return False
 
-    @fields.depends('rule')
-    def on_change_with_company(self, name="None"):
+    @fields.depends('rule', '_parent_rule.company')
+    def on_change_with_company(self, name=None):
         if self.rule:
             return self.rule.company.id
         return Transaction().context.get('company') or None
