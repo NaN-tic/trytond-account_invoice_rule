@@ -8,8 +8,6 @@ from trytond.tests.test_tryton import ModuleTestCase
 from trytond.tests.test_tryton import suite as test_suite
 from trytond.tests.test_tryton import doctest_teardown
 from trytond.tests.test_tryton import doctest_checker
-from trytond.pool import Pool
-
 
 
 class AccountInvoiceRuleTestCase(ModuleTestCase):
