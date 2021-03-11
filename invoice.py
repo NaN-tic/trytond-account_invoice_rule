@@ -60,6 +60,8 @@ class AccountInvoice(metaclass=PoolMeta):
         Line = Pool().get('account.invoice.line')
         to_save = []
         for invoice in invoices:
+            if invoice.move:
+                continue
             rule = invoice.party.customer_invoice_account_rule
             if invoice.type == 'in':
                 rule = invoice.party.supplier_invoice_account_rule
@@ -67,6 +69,9 @@ class AccountInvoice(metaclass=PoolMeta):
                 continue
             for line in invoice.lines:
                 pattern = line._get_account_rule_pattern()
+                new_account = rule.compute(pattern)
+                if not new_account or line.account == new_account:
+                    continue
                 line.account = rule.compute(pattern)
                 to_save.append(line)
         Line.save(to_save)
