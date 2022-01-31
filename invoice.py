@@ -30,9 +30,15 @@ class AccountInvoiceAccountRuleLine(ModelSQL, ModelView, MatchMixin):
 
     rule = fields.Many2One('account.invoice.account.rule', 'Rule', required=True, ondelete='CASCADE')
     origin_account = fields.Many2One('account.account', 'Origin Account',
-        domain=[('type', '!=', 'view'), ('company', '=', Eval('_parent_rule', {}).get('company', -1)),], required=True)
+        domain=[
+            ('type', '!=', 'view'),
+            ('company', '=', Eval('_parent_rule', {}).get('company', -1)),
+            ], required=True, depends=['rule'])
     target_account = fields.Many2One('account.account', 'Target Account',
-      domain=[('type', '!=', 'view'), ('company', '=', Eval('_parent_rule', {}).get('company', -1)),], required=True)
+      domain=[
+            ('type', '!=', 'view'),
+            ('company', '=', Eval('_parent_rule', {}).get('company', -1)),
+            ], required=True, depends=['rule'])
     company = fields.Function(fields.Many2One('company.company', 'Company'),
         'on_change_with_company', searcher='search_company')
 
