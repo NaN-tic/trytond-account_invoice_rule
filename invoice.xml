@@ -3,6 +3,14 @@
 this repository contains the full copyright notices and license terms. -->
 <tryton>
     <data>
+        <!-- party.party -->
+        <record model="ir.ui.view" id="party_view_form">
+            <field name="model">party.party</field>
+            <field name="inherit" ref="party.party_view_form"/>
+            <field name="name">party_form</field>
+        </record>
+
+        <!-- account.invoice.account.rule -->
         <record model="ir.ui.view" id="invoice_account_rule_view_form">
             <field name="model">account.invoice.account.rule</field>
             <field name="type">form</field>
@@ -31,35 +39,17 @@ this repository contains the full copyright notices and license terms. -->
             <field name="act_window" ref="act_invoice_account_rule_form"/>
         </record>
 
-        <record model="ir.ui.view" id="invoice_account_rule_line_view_form">
-            <field name="model">account.invoice.account.rule.line</field>
-            <field name="type">form</field>
-            <field name="name">invoice_account_rule_line_form</field>
-        </record>
-        <record model="ir.ui.view" id="invoice_account_rule_line_view_tree">
-            <field name="model">account.invoice.account.rule.line</field>
-            <field name="type">tree</field>
-            <field name="name">invoice_account_rule_line_tree</field>
-        </record>
-
-        <record model="ir.ui.view" id="party_view_form">
-            <field name="model">party.party</field>
-            <field name="inherit" ref="party.party_view_form"/>
-            <field name="name">party_form</field>
-        </record>
-
         <menuitem parent="account.menu_account_tree" action="act_invoice_account_rule_form"
             id="menu_invoice_account_rule_form" sequence="3"/>
 
         <record model="ir.rule.group" id="rule_group_invoice_account_rule">
             <field name="name">Invoice Account Rule</field>
             <field name="model" search="[('model', '=', 'account.invoice.account.rule')]"/>
-            <field name="global_p" eval="False"/>
-            <field name="default_p" eval="True"/>
+            <field name="global_p" eval="True"/>
         </record>
         <record model="ir.rule" id="rule_invoice_account_rule1">
             <field name="domain"
-                eval="[('company', '=', Eval('user', {}).get('company', None))]"
+                eval="[('company', 'in', Eval('companies', []))]"
                 pyson="1"/>
             <field name="rule_group" ref="rule_group_invoice_account_rule"/>
         </record>
@@ -97,5 +87,28 @@ this repository contains the full copyright notices and license terms. -->
             <field name="perm_delete" eval="True"/>
         </record>
 
+        <!-- account.invoice.account.rule.line -->
+        <record model="ir.ui.view" id="invoice_account_rule_line_view_form">
+            <field name="model">account.invoice.account.rule.line</field>
+            <field name="type">form</field>
+            <field name="name">invoice_account_rule_line_form</field>
+        </record>
+        <record model="ir.ui.view" id="invoice_account_rule_line_view_tree">
+            <field name="model">account.invoice.account.rule.line</field>
+            <field name="type">tree</field>
+            <field name="name">invoice_account_rule_line_tree</field>
+        </record>
+
+        <record model="ir.rule.group" id="rule_group_invoice_account_rule_line">
+            <field name="name">Invoice Account Rule Line</field>
+            <field name="model" search="[('model', '=', 'account.invoice.account.rule.line')]"/>
+            <field name="global_p" eval="True"/>
+        </record>
+        <record model="ir.rule" id="rule_invoice_invoice_accoun_rule_line">
+            <field name="domain"
+                eval="[('company', 'in', Eval('companies', []))]"
+                pyson="1"/>
+            <field name="rule_group" ref="rule_group_invoice_account_rule_line"/>
+        </record>
     </data>
 </tryton>

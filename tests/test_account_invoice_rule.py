@@ -8,9 +8,10 @@ from trytond.tests.test_tryton import ModuleTestCase
 from trytond.tests.test_tryton import suite as test_suite
 from trytond.tests.test_tryton import doctest_teardown
 from trytond.tests.test_tryton import doctest_checker
+from trytond.modules.company.tests import CompanyTestMixin
 
 
-class AccountInvoiceRuleTestCase(ModuleTestCase):
+class AccountInvoiceRuleTestCase(CompanyTestMixin, ModuleTestCase):
     'Test Account Invoice Rule module'
     module = 'account_invoice_rule'
 
