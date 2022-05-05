@@ -97,5 +97,29 @@ this repository contains the full copyright notices and license terms. -->
             <field name="perm_delete" eval="True"/>
         </record>
 
+        <record model="ir.rule.group" id="rule_group_account_invoice_account_rule_line">
+            <field name="name">User in company</field>
+            <field name="model" search="[('model', '=', 'account.invoice.account.rule.line')]"/>
+            <field name="global_p" eval="True"/>
+        </record>
+        <record model="ir.rule" id="rule_account_invoice_account_rule_line1">
+            <field name="domain"
+                eval="[('company', 'in', Eval('companies', []))]"
+                pyson="1"/>
+            <field name="rule_group" ref="rule_group_account_invoice_account_rule_line"/>
+        </record>
+
+        <record model="ir.rule.group" id="rule_group_account_invoice_account_rule">
+            <field name="name">User in company</field>
+            <field name="model" search="[('model', '=', 'account.invoice.account.rule')]"/>
+            <field name="global_p" eval="True"/>
+        </record>
+        <record model="ir.rule" id="rule_account_invoice_account_rule1">
+            <field name="domain"
+                eval="[('company', 'in', Eval('companies', []))]"
+                pyson="1"/>
+            <field name="rule_group" ref="rule_group_account_invoice_account_rule"/>
+        </record>
+
     </data>
 </tryton>
