@@ -46,6 +46,8 @@ this repository contains the full copyright notices and license terms. -->
             <field name="name">Invoice Account Rule</field>
             <field name="model" search="[('model', '=', 'account.invoice.account.rule')]"/>
             <field name="global_p" eval="True"/>
+            <!-- allow upgrade from 5.4 that default_p is True -->
+            <field name="default_p" eval="False"/>
         </record>
         <record model="ir.rule" id="rule_invoice_account_rule1">
             <field name="domain"
