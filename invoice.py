@@ -10,7 +10,7 @@ class AccountInvoiceAccountRule(ModelSQL, ModelView):
     name = fields.Char('Name', required=True)
     company = fields.Many2One('company.company', 'Company', required=True)
     lines = fields.One2Many('account.invoice.account.rule.line', 'rule', 'Lines',
-        domain=[('company', '=', Eval('company'))], depends=['company'])
+        domain=[('company', '=', Eval('company'))])
 
     @staticmethod
     def default_company():
@@ -33,12 +33,12 @@ class AccountInvoiceAccountRuleLine(ModelSQL, ModelView, MatchMixin):
         domain=[
             ('type', '!=', 'view'),
             ('company', '=', Eval('_parent_rule', {}).get('company', -1)),
-            ], required=True, depends=['rule'])
+            ], required=True)
     target_account = fields.Many2One('account.account', 'Target Account',
       domain=[
             ('type', '!=', 'view'),
             ('company', '=', Eval('_parent_rule', {}).get('company', -1)),
-            ], required=True, depends=['rule'])
+            ], required=True)
     company = fields.Function(fields.Many2One('company.company', 'Company'),
         'on_change_with_company', searcher='search_company')
 
@@ -122,8 +122,8 @@ class PartyAccount(metaclass=PoolMeta):
 
     customer_invoice_account_rule = fields.Many2One(
             'account.invoice.account.rule', "Customer Invoice Account Rule",
-            domain=[('company', '=', Eval('company', -1)),], depends=['company'])
+            domain=[('company', '=', Eval('company', -1)),])
     supplier_invoice_account_rule = fields.Many2One(
             'account.invoice.account.rule', "Supplier Invoice Account Rule",
             domain=[('company', '=', Eval('company', -1)),
-            ], depends=['company'])
+            ])
