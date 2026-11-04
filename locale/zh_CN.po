@@ -1,0 +1,89 @@
+#
+msgid ""
+msgstr ""
+"Language: zh_CN\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+msgctxt "field:account.invoice.account.rule,company:"
+msgid "Company"
+msgstr "公司"
+
+msgctxt "field:account.invoice.account.rule,lines:"
+msgid "Lines"
+msgstr "明细"
+
+msgctxt "field:account.invoice.account.rule,name:"
+msgid "Name"
+msgstr "名称"
+
+msgctxt "field:account.invoice.account.rule.line,company:"
+msgid "Company"
+msgstr "公司"
+
+msgctxt "field:account.invoice.account.rule.line,origin_account:"
+msgid "Origin Account"
+msgstr "来源科目"
+
+msgctxt "field:account.invoice.account.rule.line,rule:"
+msgid "Rule"
+msgstr "规则"
+
+msgctxt "field:account.invoice.account.rule.line,target_account:"
+msgid "Target Account"
+msgstr "目标科目"
+
+msgctxt "field:party.party,customer_invoice_account_rule:"
+msgid "Customer Invoice Account Rule"
+msgstr "客户发票科目规则"
+
+msgctxt "field:party.party,supplier_invoice_account_rule:"
+msgid "Supplier Invoice Account Rule"
+msgstr "供应商发票科目规则"
+
+msgctxt "field:party.party.account,customer_invoice_account_rule:"
+msgid "Customer Invoice Account Rule"
+msgstr "客户发票科目规则"
+
+msgctxt "field:party.party.account,supplier_invoice_account_rule:"
+msgid "Supplier Invoice Account Rule"
+msgstr "供应商发票科目规则"
+
+msgctxt "model:account.invoice.account.rule,name:"
+msgid "Account Invoice Account Rule"
+msgstr "发票科目规则"
+
+msgctxt "model:account.invoice.account.rule.line,name:"
+msgid "Account Invoice Account Rule Line"
+msgstr "发票科目规则明细"
+
+msgctxt "model:ir.action,name:act_invoice_account_rule_form"
+msgid "Invoice Account Rules"
+msgstr "发票科目规则"
+
+msgctxt "model:ir.rule.group,name:rule_group_invoice_account_rule"
+msgid "Invoice Account Rule"
+msgstr "发票科目规则"
+
+msgctxt "model:ir.ui.menu,name:menu_invoice_account_rule_form"
+msgid "Invoice Account Rules"
+msgstr "发票科目规则"
+
+msgctxt "model:account.invoice.account.rule.line,string:"
+msgid "Account Invoice Account Rule Line"
+msgstr "发票科目规则明细"
+
+msgctxt "model:account.invoice.account.rule,string:"
+msgid "Account Invoice Account Rule"
+msgstr "发票科目规则"
+
+msgctxt "model:ir.rule.group,name:rule_group_account_invoice_account_rule"
+msgid "User in company"
+msgstr "公司内用户"
+
+msgctxt ""
+"model:ir.rule.group,name:rule_group_account_invoice_account_rule_line"
+msgid "User in company"
+msgstr "公司内用户"
