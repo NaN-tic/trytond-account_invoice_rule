@@ -1,0 +1,89 @@
+#
+msgid ""
+msgstr ""
+"Language: hu\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+msgctxt "field:account.invoice.account.rule,company:"
+msgid "Company"
+msgstr "Cég"
+
+msgctxt "field:account.invoice.account.rule,lines:"
+msgid "Lines"
+msgstr "Sorok"
+
+msgctxt "field:account.invoice.account.rule,name:"
+msgid "Name"
+msgstr "Név"
+
+msgctxt "field:account.invoice.account.rule.line,company:"
+msgid "Company"
+msgstr "Cég"
+
+msgctxt "field:account.invoice.account.rule.line,origin_account:"
+msgid "Origin Account"
+msgstr "Forrásszámla"
+
+msgctxt "field:account.invoice.account.rule.line,rule:"
+msgid "Rule"
+msgstr "Szabály"
+
+msgctxt "field:account.invoice.account.rule.line,target_account:"
+msgid "Target Account"
+msgstr "Célszámla"
+
+msgctxt "field:party.party,customer_invoice_account_rule:"
+msgid "Customer Invoice Account Rule"
+msgstr "Vevői számla főkönyvi szabálya"
+
+msgctxt "field:party.party,supplier_invoice_account_rule:"
+msgid "Supplier Invoice Account Rule"
+msgstr "Szállítói számla főkönyvi szabálya"
+
+msgctxt "field:party.party.account,customer_invoice_account_rule:"
+msgid "Customer Invoice Account Rule"
+msgstr "Vevői számla főkönyvi szabálya"
+
+msgctxt "field:party.party.account,supplier_invoice_account_rule:"
+msgid "Supplier Invoice Account Rule"
+msgstr "Szállítói számla főkönyvi szabálya"
+
+msgctxt "model:account.invoice.account.rule,name:"
+msgid "Account Invoice Account Rule"
+msgstr "Számla főkönyvi szabálya"
+
+msgctxt "model:account.invoice.account.rule.line,name:"
+msgid "Account Invoice Account Rule Line"
+msgstr "Számla főkönyvi szabályának sora"
+
+msgctxt "model:ir.action,name:act_invoice_account_rule_form"
+msgid "Invoice Account Rules"
+msgstr "Számlák főkönyvi szabályai"
+
+msgctxt "model:ir.rule.group,name:rule_group_invoice_account_rule"
+msgid "Invoice Account Rule"
+msgstr "Számla főkönyvi szabálya"
+
+msgctxt "model:ir.ui.menu,name:menu_invoice_account_rule_form"
+msgid "Invoice Account Rules"
+msgstr "Számlák főkönyvi szabályai"
+
+msgctxt "model:account.invoice.account.rule.line,string:"
+msgid "Account Invoice Account Rule Line"
+msgstr "Számla főkönyvi szabályának sora"
+
+msgctxt "model:account.invoice.account.rule,string:"
+msgid "Account Invoice Account Rule"
+msgstr "Számla főkönyvi szabálya"
+
+msgctxt "model:ir.rule.group,name:rule_group_account_invoice_account_rule"
+msgid "User in company"
+msgstr "Felhasználó a vállalatban"
+
+msgctxt ""
+"model:ir.rule.group,name:rule_group_account_invoice_account_rule_line"
+msgid "User in company"
+msgstr "Felhasználó a vállalatban"
